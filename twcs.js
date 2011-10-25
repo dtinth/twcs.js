@@ -1,10 +1,19 @@
-// dtinth/inheritance
-// Thai's JavaScript Inheritance Library
+/*
+ * thaiWitter Class System
+ *
+ * (c) Thai Pangsakulyanont. twcs.js is released under WTFPL.
+ */
 
 function BaseClass() {}
 function Class(b) {
 	var c = function() { if (this.init) this.init.apply(this, arguments); };
 	return c.extendFrom(b ? b : BaseClass);
+}
+function defClass(name, b) {
+	return (function() {
+		if (!this[name]) this[name] = new Class(b);
+		return this[name];
+	})();
 }
 
 Function.prototype.implement = BaseClass.prototype.implement = function(x) {
@@ -50,4 +59,10 @@ Function.prototype.proxy = BaseClass.prototype.proxy = function(name) {
 	return this._tw_proxies[name];
 };
 
+Function.prototype.b = function(ctx) {
+	var fn = this;
+	return function() {
+		return fn.apply(ctx, arguments);
+	};
+};
 

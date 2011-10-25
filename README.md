@@ -1,13 +1,12 @@
 
-Thai's JavaScript Inheritance Library
-=====================================
+thaiWitter Class System
+=======================
 
-It is a JavaScript inheritance library that I made. Features:
+The class system made for #thaiWitter. Features:
 
-- Can create classes that extend another class.
-- Can override methods of extended class in the subclass, like in classical OOP.
-- Can override methods of a base class dynamically, which will affect all subclasses.
-- Can call the overridden function.
+- Creating classes that inherits from other class (only instance methods / variables are inherited).
+- Override any function in any class (monkey-patching).
+- Allows calling of overridden method (both with inheritance and monkey-patching).
 
 
 Usage
@@ -66,8 +65,8 @@ Creating a subclass
 __Note:__ Class methods and static variables are not inherited. Only members in the prototype will be inherited.
 
 
-Overriding a method in a subclass
----------------------------------
+Calling the overridden function
+-------------------------------
 
 When you want to call the overriden function, use `arguments.callee._super.call(this, [your arguments here])`
 
@@ -84,8 +83,8 @@ When you want to call the overriden function, use `arguments.callee._super.call(
     b.hello(); // alerts Hi, undefined!!
 
 
-Overriding a method in an existing class dynamically
-----------------------------------------------------
+Monkey-patching
+---------------
 
 Just do the same, and you can also call the overridden method the same way. This also affect all the subclasses when they call the overridden function. 
 
